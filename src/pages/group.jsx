@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Card, Typography, Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import { user_status_in_group_api, group_info_api, view_plans_api, view_activities_api } from "../api.jsx";
+import { user_status_in_group_api, group_info_api, view_plans_api } from "../api.jsx";
 
 const { Title, Text } = Typography;
 
@@ -13,8 +13,7 @@ export default function Group() {
   const [perms, setPerms] = useState(null);
   const [groupData, setGroupData] = useState(null);
   const [hangoutData, setHangoutData] = useState([]);
-  const [activityData, setActivityData] = useState([]);
-
+  
   // Fetch user permissions
   useEffect(() => {
     async function getPerms() {
@@ -31,21 +30,6 @@ export default function Group() {
       setGroupData(token);
     }
     getGroupData();
-  }, [id]);
-
-  // Fetch activity data
-  useEffect(() => {
-    async function getActivityData() {
-      const activities = await view_activities_api(Number(id));
-      console.log("Activity Data from API:", activities); // Debugging: Log API response
-
-      if (Array.isArray(activities)) {
-        setActivityData(activities);
-      } else {
-        console.error("Expected an array but got:", activities);
-      }
-    }
-    getActivityData();
   }, [id]);
 
   // Fetch hangout plans
@@ -74,13 +58,6 @@ export default function Group() {
       </Flex>
     );
   }
-
-  // Filter activities based on matching hangout ID
-  const getMatchingActivities = (hangoutId) => {
-    console.log(activityData)
-    return activityData.filter(activity => activity.id === hangoutId);
-  };
-  
   return (
     <Flex vertical="true" style={{ marginBottom: "20px" }}>
       <Title>{groupData[0]?.name}</Title>

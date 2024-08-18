@@ -1,0 +1,20 @@
+{
+  "files": {
+    "src/App.css": [
+      {
+        "id": "f8240729-1bf6-47dc-9c6b-d11b4788e70c",
+        "line": 1,
+        "version": 426,
+        "index": 0
+      }
+    ],
+    "src/pages/grouppage.jsx": [
+      {
+        "id": "1b155b85-55e1-4eb0-a9d2-e20f6637660f",
+        "line": 115,
+        "version": 2508,
+        "index": 2581
+      }
+    ]
+  }
+}
